@@ -1,9 +1,10 @@
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import SafeAreaLayout from '../../components/SafeAreaLayout'
 import { PrimaryStatusBar } from '../../components/StatusBars'
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 
-import ForgetPasswordImg from "../../../assets/ForgetPasswordImg.png"
+import VerificationImg from "../../../assets/Verification.png"
 import { SecondaryColor } from '../../utils/Colors'
 import GlobalStyle from '../../styles/GlobalStyle'
 
@@ -20,22 +21,32 @@ const Verification = () => {
                 <PrimaryStatusBar />
                 <View style={styles.container}>
                     <View style={styles.top}>
-                        <Image source={ForgetPasswordImg} style={styles.topImg} />
+                        <Image source={VerificationImg} style={styles.topImg} />
                     </View>
                     <View style={styles.bottom}>
                         <Text style={styles.heading}>Verification</Text>
                         <Text style={styles.subHeading}>Enter the verification code below</Text>
                         <View style={{ ...styles.inputGroup, marginTop: 30, marginBottom: 20 }}>
-
+                            <View style={styles.labelBox}>
+                                <Text style={styles.label}>Enter OTP here</Text>
+                                <SimpleLineIcons name="info" size={18} />
+                            </View>
+                            <View style={styles.inputBox}>
+                                <TextInput placeholder='0' keyboardType='numeric' style={styles.input} />
+                                <TextInput placeholder='0' keyboardType='numeric' style={styles.input} />
+                                <TextInput placeholder='0' keyboardType='numeric' style={styles.input} />
+                                <TextInput placeholder='0' keyboardType='numeric' style={styles.input} />
+                                <TextInput placeholder='0' keyboardType='numeric' style={styles.input} />
+                            </View>
                         </View>
                         <View>
                             <TouchableOpacity onPress={handleSendCode}>
-                                <Text style={styles.forgetPasswordTxt}>Didn’t receive? <Text style={{ color: SecondaryColor }}>Send again</Text></Text>
+                                <Text style={styles.forgetPasswordTxt}>Didn’t receive? <Text style={styles.sendCodeTxt}>Send again</Text></Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonWrapper}>
-                            <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={() => navigation.navigate("Verification")}>
-                                <Text style={{ color: "white" }}>Send Link</Text>
+                            <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={() => navigation.navigate("ResetPassword")}>
+                                <Text style={{ color: "white" }}>Reset Password</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -78,10 +89,30 @@ const styles = StyleSheet.create({
         fontWeight: "300",
         marginTop: 10
     },
-    inputLabelBox: {
+    labelBox: {
         flexDirection: "row",
-        gap: 12,
         alignItems: "center"
+    },
+    label: {
+        marginRight: 12,
+        color: "#4B525C",
+        fontWeight: "700",
+        fontSize: 18
+    },
+    inputBox: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: 22
+    },
+    input: {
+        backgroundColor: "#FFFFFF",
+        padding: 15,
+        borderRadius: 8,
+        borderColor: "#ECECEC",
+        borderWidth: 1,
+        fontSize: 18,
+        fontWeight: "500",
+        textAlign: "center"
     },
     forgetPasswordTxt: {
         textAlign: "right",
@@ -89,6 +120,11 @@ const styles = StyleSheet.create({
         fontWeight: "300",
         marginTop: 10,
         marginBottom: 25
+    },
+    sendCodeTxt: {
+        color: SecondaryColor,
+        fontWeight: "500",
+        textDecorationLine: "underline"
     },
     buttonWrapper: {
         flexDirection: "column",
