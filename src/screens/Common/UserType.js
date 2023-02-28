@@ -6,7 +6,6 @@ import { PrimaryStatusBar } from '../../components/StatusBars'
 import ChildImg from "../../../assets/UserType/Child.png"
 import ParentImg from "../../../assets/UserType/Parent.png"
 import GlobalStyle from '../../styles/GlobalStyle'
-import { SecondaryColor } from '../../utils/Colors'
 
 const UserType = ({ navigation }) => {
 
