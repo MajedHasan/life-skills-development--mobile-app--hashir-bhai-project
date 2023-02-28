@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import SafeAreaLayout from '../../components/SafeAreaLayout'
 import { PrimaryStatusBar } from '../../components/StatusBars'
+import Feather from "react-native-vector-icons/Feather"
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 
 import LoginImg from "../../../assets/LoginImg.png"
 import GlobalStyle from '../../styles/GlobalStyle'
@@ -10,6 +12,9 @@ import { PrimaryColor, SecondaryColor } from '../../utils/Colors'
 
 
 const Login = ({ navigation }) => {
+
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
         <>
             <SafeAreaLayout statusBarType="primary">
@@ -23,6 +28,7 @@ const Login = ({ navigation }) => {
                         <Text style={styles.subHeading}>Please enter your personal information and create password.</Text>
                         <View style={{ ...styles.inputGroup, marginTop: 30, marginBottom: 20 }}>
                             <View style={styles.inputLabelBox}>
+                                <Feather name="users" size={15} />
                                 <Text style={styles.inputLabel}>Username</Text>
                             </View>
                             <View style={styles.textInputBox}>
@@ -31,11 +37,14 @@ const Login = ({ navigation }) => {
                         </View>
                         <View style={styles.inputGroup}>
                             <View style={styles.inputLabelBox}>
+                                <SimpleLineIcons name="lock" size={15} />
                                 <Text style={styles.inputLabel}>Password</Text>
                             </View>
                             <View style={styles.textInputBox}>
                                 <TextInput placeholder='Enter username here' style={styles.textInput} sourceTextEntry={true} textContentType={'password'} />
-                                <Text>T</Text>
+                                {
+                                    showPassword ? <Feather name="eye" size={15} onPress={() => setShowPassword(false)} /> : <Feather name="eye-off" size={15} onPress={() => setShowPassword(true)} />
+                                }
                             </View>
                         </View>
                         <View>
@@ -103,7 +112,8 @@ const styles = StyleSheet.create({
     },
     inputLabel: {
         fontSize: 12,
-        fontWeight: "400"
+        fontWeight: "400",
+        marginLeft: 10
     },
     textInputBox: {
         paddingVertical: 10,
