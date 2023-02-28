@@ -9,6 +9,7 @@ import UserType from './src/screens/Common/UserType';
 import Verification from './src/screens/Common/Verification';
 import ResetPassword from './src/screens/Common/ResetPassword';
 import Signup from './src/screens/Common/Singup';
+import Connect from './src/screens/Common/Connect';
 
 
 const Navigation = () => {
@@ -25,6 +26,7 @@ const Navigation = () => {
                 <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
                 <Stack.Screen name="Verification" component={Verification} />
                 <Stack.Screen name="ResetPassword" component={ResetPassword} />
+                <Stack.Screen name="Connect" component={Connect} />
             </Stack.Navigator>
         </NavigationContainer >
     )

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import SafeAreaLayout from '../../components/SafeAreaLayout'
-import { PrimaryStatusBar } from '../../components/StatusBars'
+import { PrimaryStatusBar, SecondaryStatusBar } from '../../components/StatusBars'
 import Feather from "react-native-vector-icons/Feather"
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 import AntDesign from "react-native-vector-icons/AntDesign"
@@ -24,7 +24,7 @@ const Signup = ({ navigation }) => {
     return (
         <>
             <SafeAreaLayout statusBarType="primary">
-                <PrimaryStatusBar />
+                <SecondaryStatusBar />
                 <View style={styles.container}>
                     <View style={styles.top}>
                         <View style={styles.topBox}></View>

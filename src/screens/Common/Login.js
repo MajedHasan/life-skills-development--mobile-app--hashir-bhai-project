@@ -62,7 +62,7 @@ const Login = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonWrapper}>
-                            <TouchableOpacity style={GlobalStyle.primaryBtn}>
+                            <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={() => navigation.navigate("Connect")}>
                                 <Text style={{ color: "white" }}>Log in</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
