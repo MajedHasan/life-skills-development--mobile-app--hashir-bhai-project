@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, StatusBar } from 'react-native';
 const Splash = ({ navigation }) => {
 
     setTimeout(() => {
-        navigation.navigate("Login")
+        navigation.navigate("UserType")
     }, 1500);
 
     return (

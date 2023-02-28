@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Splash from "./src/screens/Common/Splash"
 import Login from "./src/screens/Common/Login"
 import ForgetPassword from './src/screens/Common/ForgetPassword';
+import UserType from './src/screens/Common/UserType';
 
 
 const Navigation = () => {
@@ -15,6 +16,7 @@ const Navigation = () => {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Splash" component={Splash} />
+                <Stack.Screen name="UserType" component={UserType} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
             </Stack.Navigator>

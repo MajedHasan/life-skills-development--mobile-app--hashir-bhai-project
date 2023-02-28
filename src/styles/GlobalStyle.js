@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { PrimaryColor } from "../utils/Colors";
+import { PrimaryColor, SecondaryColor } from "../utils/Colors";
 
 
 export default StyleSheet.create({
@@ -24,5 +24,15 @@ export default StyleSheet.create({
         justifyContent: "center",
         borderColor: PrimaryColor,
         borderWidth: 1
-    }
+    },
+    secondaryBtn: {
+        borderRadius: 999,
+        paddingHorizontal: 25,
+        paddingVertical: 12,
+        backgroundColor: SecondaryColor,
+        color: "white",
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "center"
+    },
 })
