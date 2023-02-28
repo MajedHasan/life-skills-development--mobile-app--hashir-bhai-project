@@ -13,7 +13,7 @@ import { PrimaryColor, SecondaryColor } from '../../utils/Colors'
 
 const Login = ({ navigation }) => {
 
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(true)
 
     return (
         <>
@@ -41,9 +41,18 @@ const Login = ({ navigation }) => {
                                 <Text style={styles.inputLabel}>Password</Text>
                             </View>
                             <View style={styles.textInputBox}>
-                                <TextInput placeholder='Enter username here' style={styles.textInput} sourceTextEntry={true} textContentType={'password'} />
+                                <TextInput
+                                    placeholder='Enter username here'
+                                    style={styles.textInput}
+                                    name="password"
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    textContentType="newPassword"
+                                    secureTextEntry={showPassword ? true : false}
+                                    enablesReturnKeyAutomatically
+                                />
                                 {
-                                    showPassword ? <Feather name="eye" size={15} onPress={() => setShowPassword(false)} /> : <Feather name="eye-off" size={15} onPress={() => setShowPassword(true)} />
+                                    showPassword ? <Feather name="eye-off" size={15} onPress={() => setShowPassword(false)} /> : <Feather name="eye" size={15} onPress={() => setShowPassword(true)} />
                                 }
                             </View>
                         </View>

@@ -6,6 +6,7 @@ import Splash from "./src/screens/Common/Splash"
 import Login from "./src/screens/Common/Login"
 import ForgetPassword from './src/screens/Common/ForgetPassword';
 import UserType from './src/screens/Common/UserType';
+import Verification from './src/screens/Common/Verification';
 
 
 const Navigation = () => {
@@ -19,6 +20,7 @@ const Navigation = () => {
                 <Stack.Screen name="UserType" component={UserType} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+                <Stack.Screen name="Verification" component={Verification} />
             </Stack.Navigator>
         </NavigationContainer >
     )
