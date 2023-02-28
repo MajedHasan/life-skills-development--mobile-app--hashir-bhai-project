@@ -1,19 +1,25 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import SafeAreaLayout from '../../components/SafeAreaLayout'
 import { PrimaryStatusBar } from '../../components/StatusBars'
 import Feather from "react-native-vector-icons/Feather"
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
+import AntDesign from "react-native-vector-icons/AntDesign"
 
-import LoginImg from "../../../assets/LoginImg.png"
+import FacebookImg from "../../../assets/Facebook.png"
+import GoogleImg from "../../../assets/Google.png"
+import TwitterImg from "../../../assets/Twitter.png"
+
 import GlobalStyle from '../../styles/GlobalStyle'
 import { PrimaryColor, SecondaryColor } from '../../utils/Colors'
 
 
 
-const Login = ({ navigation }) => {
+const Signup = ({ navigation }) => {
 
     const [showPassword, setShowPassword] = useState(true)
+    const [isChecked, setIsChecked] = useState(false)
+
 
     return (
         <>
@@ -21,10 +27,10 @@ const Login = ({ navigation }) => {
                 <PrimaryStatusBar />
                 <View style={styles.container}>
                     <View style={styles.top}>
-                        <Image source={LoginImg} style={styles.topImg} />
+                        <View style={styles.topBox}></View>
                     </View>
                     <View style={styles.bottom}>
-                        <Text style={styles.heading}>Log in</Text>
+                        <Text style={styles.heading}>Create Account</Text>
                         <Text style={styles.subHeading}>Please enter your personal information and create password.</Text>
                         <View style={{ ...styles.inputGroup, marginTop: 30, marginBottom: 20 }}>
                             <View style={styles.inputLabelBox}>
@@ -33,6 +39,19 @@ const Login = ({ navigation }) => {
                             </View>
                             <View style={styles.textInputBox}>
                                 <TextInput placeholder='Enter username here' style={styles.textInput} />
+                            </View>
+                        </View>
+                        <View style={styles.inputGroup}>
+                            <View style={styles.inputLabelBox}>
+                                <SimpleLineIcons name="envelope" size={15} />
+                                <Text style={styles.inputLabel}>Email</Text>
+                            </View>
+                            <View style={styles.textInputBox}>
+                                <TextInput
+                                    placeholder='Enter your email here'
+                                    style={styles.textInput}
+                                    name="email"
+                                />
                             </View>
                         </View>
                         <View style={styles.inputGroup}>
@@ -57,21 +76,38 @@ const Login = ({ navigation }) => {
                             </View>
                         </View>
                         <View>
-                            <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
-                                <Text style={styles.forgetPasswordTxt}>Forget password?</Text>
+                            <TouchableOpacity style={styles.agreeTxtBox}>
+                                <TouchableOpacity style={styles.checkbox} onPress={() => setIsChecked(!isChecked)}>
+                                    {
+                                        isChecked && <AntDesign name="check" size={10} />
+                                    }
+                                </TouchableOpacity>
+                                <Text style={styles.agreeTxt}>I Agreed with terms and conditions and privacy Policy.</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonWrapper}>
                             <TouchableOpacity style={GlobalStyle.primaryBtn}>
-                                <Text style={{ color: "white" }}>Log in</Text>
+                                <Text style={{ color: "white" }}>Register</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                                <Text style={styles.registerText}>New here?
-                                    <Text style={styles.registerSubText}> Register here</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                                <Text style={styles.registerText}>Have an account?
+                                    <Text style={styles.registerSubText}>Login here</Text>
                                 </Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={GlobalStyle.primaryBtnOutline}>
-                                <Text style={{ color: PrimaryColor }}>Scan face to  Login</Text>
+                                <Text style={{ color: PrimaryColor }}>Scan face to signup</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <Text style={styles.otherLoginTxt}>Create your account with</Text>
+                        <View style={styles.otherLoginContainer}>
+                            <TouchableOpacity>
+                                <Image source={FacebookImg} />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Image source={GoogleImg} />
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Image source={TwitterImg} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -87,15 +123,23 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: "#393E41"
     },
     top: {
-        flex: 1
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center",
+        paddingTop: 10
     },
-    topImg: {
-        // width: "100%"
+    topBox: {
+        width: 300,
+        height: 50,
+        backgroundColor: "#D1D1D1",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15
     },
     bottom: {
-        flex: 2,
+        flex: 19,
         backgroundColor: "#F8FFFF",
         width: "100%",
         borderTopLeftRadius: 25,
@@ -139,12 +183,15 @@ const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: "400",
     },
-    forgetPasswordTxt: {
-        textAlign: "right",
-        fontSize: 10,
-        fontWeight: "300",
+    agreeTxtBox: {
+        flexDirection: "row",
+        alignItems: "center",
         marginTop: 10,
         marginBottom: 25
+    },
+    agreeTxt: {
+        fontSize: 10,
+        fontWeight: "300"
     },
     buttonWrapper: {
         flexDirection: "column",
@@ -163,7 +210,30 @@ const styles = StyleSheet.create({
         color: SecondaryColor,
         textDecorationStyle: "solid",
         textDecorationLine: "underline"
+    },
+    checkbox: {
+        borderWidth: 1,
+        borderColor: "#D1D1D1",
+        borderRadius: 5,
+        marginRight: 10,
+        width: 20,
+        height: 20,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    otherLoginTxt: {
+        fontWeight: "500",
+        fontSize: 12,
+        textAlign: "center",
+        marginTop: 30
+    },
+    otherLoginContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: 250,
+        alignSelf: "center",
+        marginTop: 5
     }
 })
 
-export default Login
+export default Signup

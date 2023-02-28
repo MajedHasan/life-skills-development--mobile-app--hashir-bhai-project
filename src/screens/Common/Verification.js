@@ -9,7 +9,7 @@ import { SecondaryColor } from '../../utils/Colors'
 import GlobalStyle from '../../styles/GlobalStyle'
 
 
-const Verification = () => {
+const Verification = ({ navigation }) => {
 
     const handleSendCode = () => {
         Alert.alert("Code sent")

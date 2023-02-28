@@ -5,15 +5,16 @@ import { PrimaryStatusBar } from '../../components/StatusBars'
 import Feather from "react-native-vector-icons/Feather"
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 
-import LoginImg from "../../../assets/LoginImg.png"
+import ResetPasswordImg from "../../../assets/ReserPassword.png"
 import GlobalStyle from '../../styles/GlobalStyle'
-import { PrimaryColor, SecondaryColor } from '../../utils/Colors'
+import { SecondaryColor } from '../../utils/Colors'
 
 
 
-const Login = ({ navigation }) => {
+const ResetPassword = ({ navigation }) => {
 
     const [showPassword, setShowPassword] = useState(true)
+    const [confirmShowPassword, setConfirmShowPassword] = useState(true)
 
     return (
         <>
@@ -21,28 +22,19 @@ const Login = ({ navigation }) => {
                 <PrimaryStatusBar />
                 <View style={styles.container}>
                     <View style={styles.top}>
-                        <Image source={LoginImg} style={styles.topImg} />
+                        <Image source={ResetPasswordImg} style={styles.topImg} />
                     </View>
                     <View style={styles.bottom}>
-                        <Text style={styles.heading}>Log in</Text>
-                        <Text style={styles.subHeading}>Please enter your personal information and create password.</Text>
-                        <View style={{ ...styles.inputGroup, marginTop: 30, marginBottom: 20 }}>
-                            <View style={styles.inputLabelBox}>
-                                <Feather name="users" size={15} />
-                                <Text style={styles.inputLabel}>Username</Text>
-                            </View>
-                            <View style={styles.textInputBox}>
-                                <TextInput placeholder='Enter username here' style={styles.textInput} />
-                            </View>
-                        </View>
-                        <View style={styles.inputGroup}>
+                        <Text style={styles.heading}>Reset Password</Text>
+                        <Text style={styles.subHeading}>Enter your new password below.</Text>
+                        <View style={{ ...styles.inputGroup, marginTop: 40, marginBottom: 30 }}>
                             <View style={styles.inputLabelBox}>
                                 <SimpleLineIcons name="lock" size={15} />
                                 <Text style={styles.inputLabel}>Password</Text>
                             </View>
                             <View style={styles.textInputBox}>
                                 <TextInput
-                                    placeholder='Enter username here'
+                                    placeholder='Enter password'
                                     style={styles.textInput}
                                     name="password"
                                     autoCapitalize="none"
@@ -56,22 +48,30 @@ const Login = ({ navigation }) => {
                                 }
                             </View>
                         </View>
-                        <View>
-                            <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
-                                <Text style={styles.forgetPasswordTxt}>Forget password?</Text>
-                            </TouchableOpacity>
+                        <View style={{ ...styles.inputGroup, marginBottom: 30 }}>
+                            <View style={styles.inputLabelBox}>
+                                <SimpleLineIcons name="lock" size={15} />
+                                <Text style={styles.inputLabel}>Confirm Password</Text>
+                            </View>
+                            <View style={styles.textInputBox}>
+                                <TextInput
+                                    placeholder='Enter confirm password'
+                                    style={styles.textInput}
+                                    name="confirmPassword"
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    textContentType="confirmPassword"
+                                    secureTextEntry={confirmShowPassword ? true : false}
+                                    enablesReturnKeyAutomatically
+                                />
+                                {
+                                    confirmShowPassword ? <Feather name="eye-off" size={15} onPress={() => setConfirmShowPassword(false)} /> : <Feather name="eye" size={15} onPress={() => setConfirmShowPassword(true)} />
+                                }
+                            </View>
                         </View>
                         <View style={styles.buttonWrapper}>
-                            <TouchableOpacity style={GlobalStyle.primaryBtn}>
-                                <Text style={{ color: "white" }}>Log in</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                                <Text style={styles.registerText}>New here?
-                                    <Text style={styles.registerSubText}> Register here</Text>
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={GlobalStyle.primaryBtnOutline}>
-                                <Text style={{ color: PrimaryColor }}>Scan face to  Login</Text>
+                            <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={() => navigation.navigate("Login")}>
+                                <Text style={{ color: "white" }}>Submit</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -166,4 +166,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login
+export default ResetPassword
