@@ -10,6 +10,7 @@ import Verification from './src/screens/Common/Verification';
 import ResetPassword from './src/screens/Common/ResetPassword';
 import Signup from './src/screens/Common/Singup';
 import Connect from './src/screens/Common/Connect';
+import ConnectScan from './src/screens/Common/ConnectScan';
 
 
 const Navigation = () => {
@@ -27,6 +28,7 @@ const Navigation = () => {
                 <Stack.Screen name="Verification" component={Verification} />
                 <Stack.Screen name="ResetPassword" component={ResetPassword} />
                 <Stack.Screen name="Connect" component={Connect} />
+                <Stack.Screen name="ConnectScan" component={ConnectScan} />
             </Stack.Navigator>
         </NavigationContainer >
     )

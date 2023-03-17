@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import NormalLayout from '../../components/NormalLayout'
-import ConnectScreenImg from "../../../assets/ConnectScreenImg.png"
+import NormalLayout from '../../components/Layouts/NormalLayout'
+import ConnectScreenImg from "../../../assets/Connect/ConnectScreenImg.png"
 import GlobalStyle from '../../styles/GlobalStyle'
 
-const Connect = () => {
+const Connect = ({ navigation }) => {
     return (
         <>
             <NormalLayout headerLeft={<Text style={styles.headerLeft}>LifeSkillz</Text>} shadowShown={false}>
@@ -12,7 +12,7 @@ const Connect = () => {
                     <Text style={styles.title}>Connect to your Guardian.</Text>
                     <Image source={ConnectScreenImg} style={styles.image} />
                     <Text style={styles.smallTxt}>Add your parent or guardian to your account easily.</Text>
-                    <TouchableOpacity style={{ ...GlobalStyle.primaryBtn, ...styles.btn }}>
+                    <TouchableOpacity style={{ ...GlobalStyle.primaryBtn, ...styles.btn }} onPress={() => navigation.navigate("ConnectScan")}>
                         <Text style={styles.btnTxt}>Connect Parent</Text>
                     </TouchableOpacity>
                 </View>
