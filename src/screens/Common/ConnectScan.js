@@ -1,5 +1,5 @@
 import { Image, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import NormalLayout from '../../components/Layouts/NormalLayout'
 
 import Feather from "react-native-vector-icons/Feather"
@@ -9,6 +9,7 @@ import { PrimaryColor } from '../../utils/Colors'
 
 import { useToast } from "react-native-toast-notifications";
 import Toast from "react-native-toast-notifications";
+import { BarCodeScanner } from "expo-barcode-scanner"
 
 
 
@@ -17,6 +18,12 @@ const ConnectScan = ({ navigation }) => {
     const toast = useToast()
     const toastRef = useRef();
     const [showModal, setShowModal] = useState(false)
+
+    const [hasPermission, setHasPermission] = useState(null)
+    const [scanned, setScanned] = useState(false)
+    const [text, setText] = useState("Not yet scanned")
+    const [scannerOn, setScannerOn] = useState(false)
+
 
     const handleCloseMdoal = () => {
         setShowModal(false)
@@ -34,6 +41,43 @@ const ConnectScan = ({ navigation }) => {
             setShowModal(false)
         }, 100);
     }
+
+
+    const askForCameraPermission = () => {
+        (async () => {
+            const { status } = await BarCodeScanner.requestPermissionsAsync()
+            setHasPermission(status === "granted")
+        })()
+    }
+
+    // Request Camera Permission
+    useEffect(() => {
+        askForCameraPermission()
+    }, [])
+
+    // What happens when we scan the bar code
+    const handleBarCodeScanned = ({ type, data }) => {
+        setScanned(true)
+        setText(data)
+        setScannerOn(false)
+    }
+
+
+
+    if (hasPermission === false) {
+        return (
+            <NormalLayout headerLeft={<Feather name="chevron-left" size={30} onPress={() => navigation.goBack()} />}>
+                <View style={styles.container}>
+                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", width: 280, alignSelf: "center" }}>
+                        <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={askForCameraPermission}>
+                            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Please give camera permission</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </NormalLayout>
+        )
+    }
+
 
 
     return (
@@ -56,13 +100,31 @@ const ConnectScan = ({ navigation }) => {
                     <View style={styles.content}>
                         <Text style={styles.heading}>Connect to your Guardian</Text>
                         <Text style={styles.subHeading}>Scan the QR code and connect to your Guardians account.</Text>
-                        <View style={styles.qrCodeBox}>
-                            <Image source={require("../../../assets/Connect/qrCode.png")} />
+                        <Text>{text}</Text>
+                        {
+                            scannerOn === true && <BarCodeScanner
+                                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                                style={styles.qrCodeScannerBox}
+                            />
+                        }
+                        <View style={!scannerOn && styles.qrCodeBox}>
+                            {
+                                scannerOn === false && <Image source={require("../../../assets/Connect/qrCode.png")} />
+                            }
                         </View>
                         <View style={styles.bottonBox}>
-                            <TouchableOpacity style={{ ...GlobalStyle.primaryBtn, ...styles.primaryBtn }}>
-                                <Text style={styles.primaryBtnTxt}>Scan</Text>
+                            <TouchableOpacity style={{ ...GlobalStyle.primaryBtn, ...styles.primaryBtn }} onPress={() => { setScannerOn(true); setScanned(false) }}>
+                                <Text style={styles.primaryBtnTxt}>
+                                    {scanned ? "Scan Again" : "Scan"}
+                                </Text>
                             </TouchableOpacity>
+                            {
+                                scannerOn === true && <TouchableOpacity style={{ ...GlobalStyle.primaryBtn, backgroundColor: "red", marginBottom: 10 }} onPress={() => setScannerOn(false)}>
+                                    <Text style={styles.primaryBtnTxt}>
+                                        Cancel
+                                    </Text>
+                                </TouchableOpacity>
+                            }
                             <TouchableOpacity style={GlobalStyle.primaryBtnOutline} onPress={() => setShowModal(true)}>
                                 <Text style={styles.primaryOutlineBtnTxt}>Select from contact</Text>
                             </TouchableOpacity>
@@ -201,6 +263,18 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         marginBottom: 35
+    },
+    qrCodeScannerBox: {
+        width: 300,
+        height: 250,
+        borderRadius: 15,
+        shadowColor: "rgba(117, 117, 117, 0.25)",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 15,
+        elevation: 10,
+        alignSelf: "center",
+        marginBottom: 20
     },
     bottonBox: {
         width: 200,
