@@ -16,6 +16,8 @@ import Profile from './src/screens/Common/Profile';
 import AddUser from './src/screens/Common/AddUser';
 import AddUserFromContact from './src/screens/Common/AddUserFromContact';
 import AddUserManually from './src/screens/Common/AddUserManually';
+import ManageAccount from './src/screens/Common/ManageAccount';
+import Checklist from './src/screens/Child/Checklist';
 
 
 const Navigation = () => {
@@ -39,6 +41,8 @@ const Navigation = () => {
                 <Stack.Screen name="AddUser" component={AddUser} />
                 <Stack.Screen name="AddUserFromContact" component={AddUserFromContact} />
                 <Stack.Screen name="AddUserManually" component={AddUserManually} />
+                <Stack.Screen name="ManageAccount" component={ManageAccount} />
+                <Stack.Screen name="Checklist" component={Checklist} />
             </Stack.Navigator>
         </NavigationContainer >
     )

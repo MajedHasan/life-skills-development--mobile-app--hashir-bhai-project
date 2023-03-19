@@ -39,6 +39,7 @@ const ConnectScan = ({ navigation }) => {
         })
         setTimeout(() => {
             setShowModal(false)
+            navigation.navigate("Checklist")
         }, 100);
     }
 
@@ -64,19 +65,19 @@ const ConnectScan = ({ navigation }) => {
 
 
 
-    if (hasPermission === false) {
-        return (
-            <NormalLayout headerLeft={<Feather name="chevron-left" size={30} onPress={() => navigation.goBack()} />}>
-                <View style={styles.container}>
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", width: 280, alignSelf: "center" }}>
-                        <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={askForCameraPermission}>
-                            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Please give camera permission</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </NormalLayout>
-        )
-    }
+    // if (hasPermission === false) {
+    //     return (
+    //         <NormalLayout headerLeft={<Feather name="chevron-left" size={30} onPress={() => navigation.goBack()} />}>
+    //             <View style={styles.container}>
+    //                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center", width: 280, alignSelf: "center" }}>
+    //                     <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={askForCameraPermission}>
+    //                         <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Please give camera permission</Text>
+    //                     </TouchableOpacity>
+    //                 </View>
+    //             </View>
+    //         </NormalLayout>
+    //     )
+    // }
 
 
 

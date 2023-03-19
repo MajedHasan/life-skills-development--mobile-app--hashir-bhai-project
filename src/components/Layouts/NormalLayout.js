@@ -4,6 +4,7 @@ import SafeAreaLayout from '../SafeAreaLayout'
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import ChildrenProfileImg from "../../../assets/ChildrenProfileImg.png"
+import BottomTabs from '../Common/BottomTabs'
 
 
 const NormalLayout = ({ children, headerLeft, shadowShown, showNavMenu, navigation, route }) => {
@@ -30,9 +31,7 @@ const NormalLayout = ({ children, headerLeft, shadowShown, showNavMenu, navigati
                         {children}
                     </ScrollView>
                     {
-                        showNavMenu && <View>
-                            <Text>From Layouts</Text>
-                        </View>
+                        showNavMenu && <BottomTabs route={route} navigation={navigation} tabType={showNavMenu} />
                     }
                 </View>
             </SafeAreaLayout>

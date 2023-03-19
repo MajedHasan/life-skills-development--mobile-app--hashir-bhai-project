@@ -43,7 +43,7 @@ const Profile = ({ navigation }) => {
                             </View>
                         </View>
                         <ScrollView style={styles.settingsItemsWrapper}>
-                            <TouchableOpacity style={styles.settingsItem}>
+                            <TouchableOpacity style={styles.settingsItem} onPress={() => navigation.navigate("ManageAccount")}>
                                 <View style={styles.settingsBox}>
                                     <View style={styles.iconBox}>
                                         <Image source={require("../../../assets/Profile/ManageAccount.png")} alt="" />
