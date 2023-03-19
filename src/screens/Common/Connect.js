@@ -4,7 +4,9 @@ import NormalLayout from '../../components/Layouts/NormalLayout'
 import ConnectScreenImg from "../../../assets/Connect/ConnectScreenImg.png"
 import GlobalStyle from '../../styles/GlobalStyle'
 
+
 const Connect = ({ navigation }) => {
+
     return (
         <>
             <NormalLayout headerLeft={<Text style={styles.headerLeft}>LifeSkillz</Text>} shadowShown={false}>

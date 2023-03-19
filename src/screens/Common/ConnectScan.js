@@ -1,5 +1,5 @@
-import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { Image, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useRef, useState } from 'react'
 import NormalLayout from '../../components/Layouts/NormalLayout'
 
 import Feather from "react-native-vector-icons/Feather"
@@ -7,10 +7,34 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import GlobalStyle from '../../styles/GlobalStyle'
 import { PrimaryColor } from '../../utils/Colors'
 
+import { useToast } from "react-native-toast-notifications";
+import Toast from "react-native-toast-notifications";
+
+
 
 const ConnectScan = ({ navigation }) => {
 
+    const toast = useToast()
+    const toastRef = useRef();
     const [showModal, setShowModal] = useState(false)
+
+    const handleCloseMdoal = () => {
+        setShowModal(false)
+    }
+
+    const handleAddParent = () => {
+        toast.show("Parent Added successfully", {
+            type: "success",
+            placement: "top",
+            duration: 4000,
+            offset: 100,
+            animationType: "slide-in"
+        })
+        setTimeout(() => {
+            setShowModal(false)
+        }, 100);
+    }
+
 
     return (
         <>
@@ -50,13 +74,42 @@ const ConnectScan = ({ navigation }) => {
                 showModal && <Modal
                     animationType="slide"
                     visible={showModal}
-                    // transparent={true}
-                    style={styles.mdoalContainer}
+                    transparent={true}
+                    onRequestClose={() => setShowModal(false)}
                 >
-                    <View>
-                        {/* <View style={styles.mdoalContainer}>
-
-                        </View> */}
+                    <Toast
+                        ref={toastRef}
+                        position='bottom'
+                        positionValue={1000}
+                    />
+                    <View style={styles.mdoalContainer}>
+                        <View style={styles.modalTopBox}>
+                            <TouchableOpacity style={styles.modalTopBoxButton} onPress={handleCloseMdoal}></TouchableOpacity>
+                        </View>
+                        <View style={styles.modalContentBox}>
+                            <Text style={styles.modalHeading}>Select from contacts</Text>
+                            <Text style={styles.modalSubHeading}>Select below which Guardian's you want to see your profile.</Text>
+                            <View style={styles.modalSearchBox}>
+                                <Feather name='search' size={15} style={styles.modalSearchBoxIcon} />
+                                <TextInput placeholder='Search the contact here...' style={styles.modalSearchBoxText}></TextInput>
+                            </View>
+                            <ScrollView style={styles.ModalResultBoxWrapper}>
+                                <ModalResultBox ImageUrl={require("../../../assets/Connect/ConnectFromContactImg1.png")} />
+                                <ModalResultBox ImageUrl={require("../../../assets/Connect/ConnectFromContactImg2.png")} />
+                                <ModalResultBox ImageUrl={require("../../../assets/Connect/ConnectFromContactImg1.png")} />
+                                <ModalResultBox ImageUrl={require("../../../assets/Connect/ConnectFromContactImg2.png")} />
+                                <ModalResultBox ImageUrl={require("../../../assets/Connect/ConnectFromContactImg1.png")} />
+                                <ModalResultBox ImageUrl={require("../../../assets/Connect/ConnectFromContactImg2.png")} />
+                            </ScrollView>
+                            <View style={styles.bottonBox}>
+                                <TouchableOpacity style={{ ...GlobalStyle.primaryBtn, ...styles.primaryBtn }} onPress={handleAddParent}>
+                                    <Text style={styles.primaryBtnTxt}>Add Parent</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={{ ...GlobalStyle.primaryBtnOutline, ...styles.primaryBtnOutline }} onPress={() => setShowModal(false)}>
+                                    <Text style={styles.primaryOutlineBtnTxt}>Scan Code</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                 </Modal>
             }
@@ -65,6 +118,27 @@ const ConnectScan = ({ navigation }) => {
 }
 
 export default ConnectScan
+
+
+const ModalResultBox = ({ ImageUrl }) => {
+
+    const [select, setSelect] = useState(false)
+
+    return (
+        <TouchableOpacity style={styles.modalResultBox} onPress={() => setSelect(!select)}>
+            <View style={styles.modalResultBoxImgWrap}>
+                <Image source={ImageUrl} alt="" style={styles.modalResultBoxImg} />
+                <Text style={styles.modalResultBoxText}>Kevin</Text>
+            </View>
+            <View style={select ? styles.selectedMark : styles.unselectedMark}>
+                <View style={select ? styles.selectedMarkBox : styles.unselectedMarkBox}>
+
+                </View>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
 
 const styles = StyleSheet.create({
     container: {
@@ -129,7 +203,8 @@ const styles = StyleSheet.create({
         marginBottom: 35
     },
     bottonBox: {
-        width: 200
+        width: 200,
+        marginTop: 5
     },
     primaryBtn: {
         marginBottom: 15
@@ -145,6 +220,116 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     mdoalContainer: {
-        backgroundColor: "red"
+        flex: 1,
+        justifyContent: "flex-end",
+        backgroundColor: "rgba(0, 0, 0, 0.5)"
+    },
+    modalTopBox: {
+        flex: 1,
+    },
+    modalTopBoxButton: {
+        width: "100%",
+        height: "100%"
+    },
+    modalContentBox: {
+        flex: 10,
+        backgroundColor: "white",
+        paddingVertical: 30,
+        paddingHorizontal: 35,
+        alignItems: "center"
+    },
+    modalHeading: {
+        fontWeight: "600",
+        fontSize: 22
+    },
+    modalSubHeading: {
+        fontSize: 14,
+        fontWeight: "400",
+        marginTop: 10,
+        textAlign: "center",
+        maxWidth: 280
+    },
+    modalSearchBox: {
+        backgroundColor: "#F8FFFF",
+        paddingVertical: 10,
+        paddingHorizontal: 18,
+        borderRadius: 999,
+        shadowColor: "rgba(117, 117, 117, 0.25)",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 15,
+        elevation: 10,
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 25,
+        marginBottom: 70
+    },
+    modalSearchBoxIcon: {
+        color: PrimaryColor
+    },
+    modalSearchBoxText: {
+        fontSize: 12,
+        fontWeight: "400",
+        color: "#767676",
+        marginLeft: 10,
+    },
+    ModalResultBoxWrapper: {
+        width: "100%",
+        maxHeight: 400
+    },
+    modalResultBox: {
+        backgroundColor: "#F5EE9E",
+        width: "100%",
+        borderRadius: 22,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 20
+    },
+    modalResultBoxImgWrap: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    modalResultBoxImg: {
+        borderRadius: 9999,
+        width: 55,
+        height: 55
+    },
+    modalResultBoxText: {
+        fontSize: 14,
+        fontWeight: "500",
+        color: "#000000",
+        marginLeft: 15
+    },
+    selectedMark: {
+        borderWidth: 2,
+        borderColor: PrimaryColor,
+        padding: 5,
+        borderRadius: 9999,
+        width: 38,
+        height: 38,
+    },
+    selectedMarkBox: {
+        backgroundColor: PrimaryColor,
+        width: "100%",
+        height: "100%",
+        borderRadius: 999
+    },
+    unselectedMark: {
+        borderWidth: 2,
+        borderColor: "#FFFFFF",
+        padding: 5,
+        borderRadius: 9999,
+        width: 38,
+        height: 38,
+    },
+    unselectedMarkBox: {
+        backgroundColor: "#FFFFFF",
+        width: "100%",
+        height: "100%",
+        borderRadius: 999
     }
 })
