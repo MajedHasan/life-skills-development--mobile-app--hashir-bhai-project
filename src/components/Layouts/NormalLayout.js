@@ -17,7 +17,7 @@ const NormalLayout = ({ children, headerLeft, shadowShown, showNavMenu, navigati
                         {headerLeft ? headerLeft : <Text></Text>}
                     </View>
                     <View style={styles.headerRight}>
-                        <TouchableOpacity style={styles.notification} onPress={() => navigation && route.name !== "Notification" ? navigation.navigate("Notification") : {}}>
+                        <TouchableOpacity style={styles.notification} onPress={() => navigation && route?.name !== "Notification" ? navigation.navigate("Notification") : {}}>
                             <MaterialIcons name="notifications-none" size={20} />
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => navigation ? navigation.navigate("Profile") : {}}>

@@ -52,7 +52,7 @@ const Profile = ({ navigation }) => {
                                 </View>
                                 <Entypo name="chevron-thin-right" size={15} />
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.settingsItem}>
+                            <TouchableOpacity style={styles.settingsItem} onPress={() => navigation.navigate("AddUser")}>
                                 <View style={styles.settingsBox}>
                                     <View style={styles.iconBox}>
                                         <Image source={require("../../../assets/Profile/AddAParent.png")} alt="" />
