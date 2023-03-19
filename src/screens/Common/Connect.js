@@ -9,7 +9,7 @@ const Connect = ({ navigation }) => {
 
     return (
         <>
-            <NormalLayout headerLeft={<Text style={styles.headerLeft}>LifeSkillz</Text>} shadowShown={false}>
+            <NormalLayout headerLeft={<Text style={styles.headerLeft}>LifeSkillz</Text>} shadowShown={false} navigation={navigation}>
                 <View style={styles.container}>
                     <Text style={styles.title}>Connect to your Guardian.</Text>
                     <Image source={ConnectScreenImg} style={styles.image} />

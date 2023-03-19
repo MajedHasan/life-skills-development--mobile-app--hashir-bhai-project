@@ -11,6 +11,8 @@ import ResetPassword from './src/screens/Common/ResetPassword';
 import Signup from './src/screens/Common/Singup';
 import Connect from './src/screens/Common/Connect';
 import ConnectScan from './src/screens/Common/ConnectScan';
+import Notification from './src/screens/Common/Notification';
+import Profile from './src/screens/Common/Profile';
 
 
 const Navigation = () => {
@@ -29,6 +31,8 @@ const Navigation = () => {
                 <Stack.Screen name="ResetPassword" component={ResetPassword} />
                 <Stack.Screen name="Connect" component={Connect} />
                 <Stack.Screen name="ConnectScan" component={ConnectScan} />
+                <Stack.Screen name="Notification" component={Notification} />
+                <Stack.Screen name="Profile" component={Profile} />
             </Stack.Navigator>
         </NavigationContainer >
     )

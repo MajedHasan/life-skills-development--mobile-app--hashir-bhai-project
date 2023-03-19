@@ -82,7 +82,7 @@ const ConnectScan = ({ navigation }) => {
 
     return (
         <>
-            <NormalLayout headerLeft={<Feather name="chevron-left" size={30} onPress={() => navigation.goBack()} />}>
+            <NormalLayout headerLeft={<Feather name="chevron-left" size={30} onPress={() => navigation.goBack()} />} navigation={navigation}>
                 <View style={styles.container}>
                     <TouchableOpacity style={styles.header}>
                         <View style={styles.headerBox}>
@@ -100,7 +100,6 @@ const ConnectScan = ({ navigation }) => {
                     <View style={styles.content}>
                         <Text style={styles.heading}>Connect to your Guardian</Text>
                         <Text style={styles.subHeading}>Scan the QR code and connect to your Guardians account.</Text>
-                        <Text>{text}</Text>
                         {
                             scannerOn === true && <BarCodeScanner
                                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}

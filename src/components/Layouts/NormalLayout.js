@@ -6,7 +6,9 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import ChildrenProfileImg from "../../../assets/ChildrenProfileImg.png"
 
 
-const NormalLayout = ({ children, headerLeft, shadowShown, showNavMenu }) => {
+const NormalLayout = ({ children, headerLeft, shadowShown, showNavMenu, navigation, route }) => {
+
+
     return (
         <>
             <SafeAreaLayout>
@@ -15,10 +17,10 @@ const NormalLayout = ({ children, headerLeft, shadowShown, showNavMenu }) => {
                         {headerLeft ? headerLeft : <Text></Text>}
                     </View>
                     <View style={styles.headerRight}>
-                        <TouchableOpacity style={styles.notification}>
+                        <TouchableOpacity style={styles.notification} onPress={() => navigation && route.name !== "Notification" ? navigation.navigate("Notification") : {}}>
                             <MaterialIcons name="notifications-none" size={20} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation ? navigation.navigate("Profile") : {}}>
                             <Image source={ChildrenProfileImg} style={styles.ProfileImg} />
                         </TouchableOpacity>
                     </View>
@@ -85,6 +87,5 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         flex: 1,
-        backgroundColor: "red"
     }
 })
