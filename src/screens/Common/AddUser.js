@@ -1,5 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import BalanceBadge from '../../components/BalanceBadge'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import SafeAreaLayout from '../../components/SafeAreaLayout'
 import { PrimaryStatusBar } from '../../components/StatusBars'
 import Entypo from "react-native-vector-icons/Entypo"
@@ -17,21 +16,27 @@ const AddUser = ({ navigation }) => {
     const handleNavigate = (type) => {
         if (type === "Manual") {
             setCheckManualBox(true)
+            setCheckFromContact(false)
+            setCheckFindNearby(false)
             setTimeout(() => {
                 navigation.navigate("AddUserManually")
-            }, 1000);
+            }, 300);
         }
         else if (type === "Contact") {
+            setCheckManualBox(false)
             setCheckFromContact(true)
+            setCheckFindNearby(false)
             setTimeout(() => {
                 navigation.navigate("AddUserFromContact")
-            }, 1000);
+            }, 300);
         }
         else if (type === "Nearby") {
+            setCheckManualBox(false)
+            setCheckFromContact(false)
             setCheckFindNearby(true)
             setTimeout(() => {
                 navigation.navigate("ConnectScan")
-            }, 1000);
+            }, 300);
         }
     }
 
@@ -50,7 +55,7 @@ const AddUser = ({ navigation }) => {
                             <Text style={styles.boxText}>Add Manuaily</Text>
                             <View style={checkManualBox ? styles.checkmarkBoxActive : styles.checkmarkBox}>
                                 {
-                                    checkManualBox && <Ionicons name='checkmark' size={15} />
+                                    checkManualBox && <Ionicons name='checkmark' size={25} style={{ color: "#FFFFFF" }} />
                                 }
                             </View>
                         </TouchableOpacity>
@@ -58,7 +63,7 @@ const AddUser = ({ navigation }) => {
                             <Text style={styles.boxText}>Select from Contacts</Text>
                             <View style={checkFromContact ? styles.checkmarkBoxActive : styles.checkmarkBox}>
                                 {
-                                    checkFromContact && <Ionicons name='checkmark' size={15} />
+                                    checkFromContact && <Ionicons name='checkmark' size={25} style={{ color: "#FFFFFF" }} />
                                 }
                             </View>
                         </TouchableOpacity>
@@ -66,7 +71,7 @@ const AddUser = ({ navigation }) => {
                             <Text style={styles.boxText}>Find Nearby</Text>
                             <View style={checkFindNearby ? styles.checkmarkBoxActive : styles.checkmarkBox}>
                                 {
-                                    checkFindNearby && <Ionicons name='checkmark' size={15} />
+                                    checkFindNearby && <Ionicons name='checkmark' size={25} style={{ color: "#FFFFFF" }} />
                                 }
                             </View>
                         </TouchableOpacity>
@@ -128,12 +133,16 @@ const styles = StyleSheet.create({
         borderColor: "#C5C5C5",
         borderRadius: 999,
         width: 40,
-        height: 40
+        height: 40,
+        justifyContent: "center",
+        alignItems: "center"
     },
     checkmarkBoxActive: {
         borderRadius: 999,
         width: 40,
         height: 40,
-        backgroundColor: SecondaryColor
+        backgroundColor: SecondaryColor,
+        justifyContent: "center",
+        alignItems: "center"
     }
 })

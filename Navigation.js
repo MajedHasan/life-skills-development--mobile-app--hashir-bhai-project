@@ -14,6 +14,8 @@ import ConnectScan from './src/screens/Common/ConnectScan';
 import Notification from './src/screens/Common/Notification';
 import Profile from './src/screens/Common/Profile';
 import AddUser from './src/screens/Common/AddUser';
+import AddUserFromContact from './src/screens/Common/AddUserFromContact';
+import AddUserManually from './src/screens/Common/AddUserManually';
 
 
 const Navigation = () => {
@@ -35,6 +37,8 @@ const Navigation = () => {
                 <Stack.Screen name="Notification" component={Notification} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="AddUser" component={AddUser} />
+                <Stack.Screen name="AddUserFromContact" component={AddUserFromContact} />
+                <Stack.Screen name="AddUserManually" component={AddUserManually} />
             </Stack.Navigator>
         </NavigationContainer >
     )
