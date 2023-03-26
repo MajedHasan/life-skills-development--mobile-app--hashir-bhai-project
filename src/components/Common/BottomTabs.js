@@ -15,14 +15,14 @@ const BottomTabs = ({ tabType, route, navigation }) => {
         <View style={styles.containerWrapper}>
             <View style={styles.container}>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Checklist")}>
-                    <View style={Page === "Checklist" && styles.btnActiveBar}></View>
-                    <MaterialCommunityIcons name="calendar-check" size={20} style={Page === "Checklist" ? styles.btnActiveIcon : styles.btnIcon} />
-                    <Text style={Page === "Checklist" ? styles.btnActiveText : styles.btnText}>Checklist</Text>
+                    <View style={Page.includes("Checklist") && styles.btnActiveBar}></View>
+                    <MaterialCommunityIcons name="calendar-check" size={20} style={Page.includes("Checklist") ? styles.btnActiveIcon : styles.btnIcon} />
+                    <Text style={Page.includes("Checklist") ? styles.btnActiveText : styles.btnText}>Checklist</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Planner")}>
-                    <View style={Page === "Planner" && styles.btnActiveBar}></View>
-                    <MaterialCommunityIcons name="calendar-edit" size={20} style={Page === "Planner" ? styles.btnActiveIcon : styles.btnIcon} />
-                    <Text style={Page === "Planner" ? styles.btnActiveText : styles.btnText}>Planner</Text>
+                    <View style={Page.includes("Planner") && styles.btnActiveBar}></View>
+                    <MaterialCommunityIcons name="calendar-edit" size={20} style={Page.includes("Planner") ? styles.btnActiveIcon : styles.btnIcon} />
+                    <Text style={Page.includes("Planner") ? styles.btnActiveText : styles.btnText}>Planner</Text>
                 </TouchableOpacity>
                 {
                     tabType === "parent" && <TouchableOpacity style={styles.addBtn}>
@@ -32,14 +32,14 @@ const BottomTabs = ({ tabType, route, navigation }) => {
                     </TouchableOpacity>
                 }
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Reward")}>
-                    <View style={Page === "Reward" && styles.btnActiveBar}></View>
-                    <FontAwesome5 name="award" size={20} style={Page === "Reward" ? styles.btnActiveIcon : styles.btnIcon} />
-                    <Text style={Page === "Reward" ? styles.btnActiveText : styles.btnText}>Reward</Text>
+                    <View style={Page.includes("Reward") && styles.btnActiveBar}></View>
+                    <FontAwesome5 name="award" size={20} style={Page.includes("Reward") ? styles.btnActiveIcon : styles.btnIcon} />
+                    <Text style={Page.includes("Reward") ? styles.btnActiveText : styles.btnText}>Reward</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Wishlist")}>
-                    <View style={Page === "Wishlist" && styles.btnActiveBar}></View>
-                    <Octicons name="checklist" size={20} style={Page === "Wishlist" ? styles.btnActiveIcon : styles.btnIcon} />
-                    <Text style={Page === "Wishlist" ? styles.btnActiveText : styles.btnText}>Wishlist</Text>
+                    <View style={Page.includes("Wishlist") && styles.btnActiveBar}></View>
+                    <Octicons name="checklist" size={20} style={Page.includes("Wishlist") ? styles.btnActiveIcon : styles.btnIcon} />
+                    <Text style={Page.includes("Wishlist") ? styles.btnActiveText : styles.btnText}>Wishlist</Text>
                 </TouchableOpacity>
             </View>
         </View>
