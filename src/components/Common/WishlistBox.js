@@ -1,9 +1,9 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import { StyleSheet, Text, View } from 'react-native'
 
-const WishlistBox = ({ bgC1, bgC2, IconBoxContent, text }) => {
+const WishlistBox = ({ bgC1, bgC2, IconBoxContent, text, style }) => {
     return (
-        <LinearGradient colors={[bgC1, bgC2]} style={styles.container}>
+        <LinearGradient colors={[bgC1, bgC2]} style={style ? { ...styles.container, ...style } : styles.container}>
             <View style={styles.iconBox}>
                 {IconBoxContent}
             </View>

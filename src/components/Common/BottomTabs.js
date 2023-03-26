@@ -31,7 +31,7 @@ const BottomTabs = ({ tabType, route, navigation }) => {
                         </LinearGradient>
                     </TouchableOpacity>
                 }
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Reward")}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Rewards")}>
                     <View style={Page.includes("Reward") && styles.btnActiveBar}></View>
                     <FontAwesome5 name="award" size={20} style={Page.includes("Reward") ? styles.btnActiveIcon : styles.btnIcon} />
                     <Text style={Page.includes("Reward") ? styles.btnActiveText : styles.btnText}>Reward</Text>
