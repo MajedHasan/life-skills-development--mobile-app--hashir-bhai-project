@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import NormalLayout from "../../components/Layouts/NormalLayout"
 import BalanceBadge from "../../components/BalanceBadge"
 import MyProgramOrFamilyFeed from '../../components/Common/MyProgramOrFamilyFeed'
@@ -8,11 +8,13 @@ import { PrimaryColor } from '../../utils/Colors'
 import CheckListBox from '../../components/Common/CheckListBox'
 import WishlistBox from '../../components/Common/WishlistBox'
 import VideoCard from '../../components/Common/VideoCard'
+import Feather from "react-native-vector-icons/Feather"
 
 
 const Checklist = ({ navigation, route }) => {
 
     const [checklistPageType, setChecklistPageType] = useState("MY PROGRAM")
+    const [showModal, setShowModal] = useState(false)
 
     return (
         <>
@@ -33,18 +35,18 @@ const Checklist = ({ navigation, route }) => {
 
                             <View style={styles.todaysJobHeadingBox}>
                                 <Text style={styles.todaysJobHeading}>Today’s Job</Text>
-                                <TouchableOpacity style={styles.todaysJobHeadingBtn}>
+                                <TouchableOpacity style={styles.todaysJobHeadingBtn} onPress={() => setShowModal(true)}>
                                     <Text style={styles.todaysJobHeadingBtnText}>See all</Text>
                                 </TouchableOpacity>
                             </View>
 
-                            <CheckListBox text="Cleaning the toilets" iconType="checkmark" bgColor="#F374AE66" bdColor="#F374AE"></CheckListBox>
+                            <CheckListBox text="Cleaning the toilets" iconType="checkmark" bgColor="#F374AE66" bdColor="#F374AE" navigation={navigation}></CheckListBox>
                             <CheckListBox text="Make bed properly" iconType="checkmark" bgColor="#0ADBDB66" bdColor="#09DBDB"></CheckListBox>
                             <CheckListBox text="Do Maths homework" bgColor="#04DE0063" bdColor="#04DE00"></CheckListBox>
 
                             <View style={styles.todaysJobHeadingBox}>
                                 <Text style={styles.todaysJobHeading}>My Wishlist</Text>
-                                <TouchableOpacity style={styles.todaysJobHeadingBtn}>
+                                <TouchableOpacity style={styles.todaysJobHeadingBtn} >
                                     <Text style={styles.todaysJobHeadingBtnText}>See all</Text>
                                 </TouchableOpacity>
                             </View>
@@ -86,6 +88,32 @@ const Checklist = ({ navigation, route }) => {
                     }
                 </View>
             </NormalLayout>
+            {
+                showModal && <Modal visible={showModal} transparent={true} animationType="fade" onRequestClose={() => setShowModal(false)}>
+                    <View style={styles.modalContainer}>
+                        <TouchableOpacity style={styles.modalTopContainer} onPress={() => setShowModal(false)}></TouchableOpacity>
+                        <View style={styles.modalMainContainer}>
+                            <View style={styles.todaysJobHeadingBox}>
+                                <Text style={styles.todaysJobHeading}>Today’s Job</Text>
+                                <TouchableOpacity style={styles.todaysJobHeadingBtn} >
+                                    <Text style={styles.todaysJobHeadingBtnText}>17 Dec</Text>
+                                    <View style={styles.todaysJobHeadingBtnIconBox}>
+                                        <Feather name="calendar" size={15} />
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <ScrollView style={{ flex: 1, paddingTop: 25 }}>
+                                <CheckListBox text="Assignment preperation" iconType="checkmark" bgColor="#F374AE66" bdColor="#F374AE" onPress={() => Alert.alert("Yeahoo")}></CheckListBox>
+                                <CheckListBox text="Make bed properly" bgColor="#0ADBDB66" bdColor="#0ADADB"></CheckListBox>
+                                <CheckListBox text="Do Maths homework" iconType="checkmark" bgColor="#6F00DE63" bdColor="#6F00DE"></CheckListBox>
+                                <CheckListBox text="Cleaning the toilets" iconType="checkmark" bgColor="#FAFF0066" bdColor="#FAFF00"></CheckListBox>
+                                <CheckListBox text="Make bed properly" iconType="checkmark" bgColor="#FF000066" bdColor="#FF0000"></CheckListBox>
+                                <CheckListBox text="Do Maths homework" iconType="checkmark" bgColor="#04DE0063" bdColor="#04DE00"></CheckListBox>
+                            </ScrollView>
+                        </View>
+                    </View>
+                </Modal>
+            }
         </>
     )
 }
@@ -141,6 +169,10 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 20
     },
+    todaysJobHeadingBtn: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
     todaysJobHeadingBtnText: {
         fontWeight: "300",
         fontSize: 12
@@ -150,5 +182,29 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         flexWrap: "wrap"
+    },
+
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "#000000A5"
+    },
+    modalTopContainer: {
+        flex: 1
+    },
+    modalMainContainer: {
+        flex: 10,
+        backgroundColor: "#F5F5F5",
+        borderRadius: 25,
+        paddingVertical: 10,
+        paddingHorizontal: 20
+    },
+    todaysJobHeadingBtnIconBox: {
+        width: 32,
+        height: 32,
+        borderRadius: 99,
+        backgroundColor: "#FFFFFF",
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: 10
     }
 })

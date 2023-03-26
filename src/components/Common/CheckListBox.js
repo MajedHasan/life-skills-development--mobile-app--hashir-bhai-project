@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 
-const CheckListBox = ({ bgColor, bdColor, text, iconType }) => {
+const CheckListBox = ({ bgColor, bdColor, text, iconType, navigation }) => {
     return (
-        <View style={{ ...styles.container, backgroundColor: bgColor, borderColor: bdColor }}>
+        <TouchableOpacity style={{ ...styles.container, backgroundColor: bgColor, borderColor: bdColor }} onPress={() => navigation ? navigation.navigate("ConnectScan") : {}}>
             <View style={{ ...styles.bigStarBox, borderColor: bdColor }}>
                 <Image source={require("../../../assets/Checklist/BigStarImg.png")} alt="" style={styles.bigStarImg} />
             </View>
@@ -23,7 +23,7 @@ const CheckListBox = ({ bgColor, bdColor, text, iconType }) => {
                     iconType === "checkmark" && <Ionicons name="checkmark" size={20} />
                 }
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     )
 }
 
