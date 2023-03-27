@@ -19,6 +19,8 @@ import AddUserManually from './src/screens/Common/AddUserManually';
 import ManageAccount from './src/screens/Common/ManageAccount';
 import Checklist from './src/screens/Child/Checklist';
 import Rewards from './src/screens/Common/Rewards';
+import CaptureWork from './src/screens/Child/CaptureWork';
+import CaptureVideo from './src/screens/Child/CaptureVideo';
 
 
 const Navigation = () => {
@@ -45,6 +47,8 @@ const Navigation = () => {
                 <Stack.Screen name="ManageAccount" component={ManageAccount} />
                 <Stack.Screen name="Checklist" component={Checklist} />
                 <Stack.Screen name="Rewards" component={Rewards} />
+                <Stack.Screen name="CaptureWork" component={CaptureWork} />
+                <Stack.Screen name="CaptureVideo" component={CaptureVideo} />
             </Stack.Navigator>
         </NavigationContainer >
     )

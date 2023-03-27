@@ -4,7 +4,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome"
 
 const CheckListBox = ({ bgColor, bdColor, text, iconType, navigation }) => {
     return (
-        <TouchableOpacity style={{ ...styles.container, backgroundColor: bgColor, borderColor: bdColor }} onPress={() => navigation ? navigation.navigate("ConnectScan") : {}}>
+        <TouchableOpacity style={{ ...styles.container, backgroundColor: bgColor, borderColor: bdColor }} onPress={() => navigation ? navigation.navigate("CaptureWork") : {}}>
             <View style={{ ...styles.bigStarBox, borderColor: bdColor }}>
                 <Image source={require("../../../assets/Checklist/BigStarImg.png")} alt="" style={styles.bigStarImg} />
             </View>
