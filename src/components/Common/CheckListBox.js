@@ -22,6 +22,9 @@ const CheckListBox = ({ bgColor, bdColor, text, iconType, navigation }) => {
                 {
                     iconType === "checkmark" && <Ionicons name="checkmark" size={20} />
                 }
+                {
+                    iconType === "reload" && <Ionicons name="reload" size={20} />
+                }
             </TouchableOpacity>
         </TouchableOpacity>
     )

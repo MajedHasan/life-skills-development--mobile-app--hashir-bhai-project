@@ -20,7 +20,9 @@ const Wishlist = ({ navigation, route }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.wishlistBoxContainer}>
-                            <WishlistBox bgC1="#FF8A8A" bgC2="#CB2F2F" text="500$ Pocket Money" StarIcon={"30/100"} style={{ marginRight: 10 }} />
+                            <TouchableOpacity onPress={() => navigation.navigate("WishlistItems")}>
+                                <WishlistBox bgC1="#FF8A8A" bgC2="#CB2F2F" text="500$ Pocket Money" StarIcon={"30/100"} style={{ marginRight: 10 }} />
+                            </TouchableOpacity>
                             <WishlistBox bgC1="#FF8A8A" bgC2="#CB2F2F" text="New Lego" StarIcon={"0/100"} style={{ marginRight: 10 }} />
                             <WishlistBox bgC1="#FF8A8A" bgC2="#CB2F2F" text="New Lego" StarIcon={"0/100"} style={{ marginRight: 10 }} />
                         </View>
