@@ -21,6 +21,7 @@ import Checklist from './src/screens/Child/Checklist';
 import Rewards from './src/screens/Common/Rewards';
 import CaptureWork from './src/screens/Child/CaptureWork';
 import CaptureVideo from './src/screens/Child/CaptureVideo';
+import Wishlist from './src/screens/Common/Wishlist';
 
 
 const Navigation = () => {
@@ -49,6 +50,7 @@ const Navigation = () => {
                 <Stack.Screen name="Rewards" component={Rewards} />
                 <Stack.Screen name="CaptureWork" component={CaptureWork} />
                 <Stack.Screen name="CaptureVideo" component={CaptureVideo} />
+                <Stack.Screen name="Wishlist" component={Wishlist} />
             </Stack.Navigator>
         </NavigationContainer >
     )
