@@ -381,7 +381,7 @@ const Rewards = ({ navigation, route }) => {
                         {
                             chartType !== "Daily" && <>
                                 <View style={styles.todaysJobHeadingBox}>
-                                    <Text style={styles.todaysJobHeading}>Daily Rewards</Text>
+                                    <Text style={styles.todaysJobHeading}>Rewards</Text>
                                 </View>
                                 <RewardListBox text="Extra Ipad Time" bgColor="#FF000066" bdColor="#FF0000" progressBg="#F08585" progress={3}></RewardListBox>
                                 <RewardListBox text="Do Maths homework" bgColor="#04DE0063" bdColor="#04DE00" progress={3} btnBg1="#7DFFFD" btnBg2="#3CBAB8"></RewardListBox>

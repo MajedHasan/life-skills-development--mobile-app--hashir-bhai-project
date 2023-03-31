@@ -25,7 +25,7 @@ const WishlistItems = ({ navigation, route }) => {
                     <View style={styles.modalMainContainer}>
                         <View style={styles.todaysJobHeadingBox}>
                             <Text style={styles.todaysJobHeading}>Pocket Money Wishlist</Text>
-                            <TouchableOpacity style={styles.todaysJobHeadingBtn} >
+                            <TouchableOpacity style={styles.todaysJobHeadingBtn} onPress={() => navigation.navigate("WishlistImg")}>
                                 <View style={styles.todaysJobHeadingBtnIconBox}>
                                     <Ionicons name="images-outline" size={15} />
                                 </View>

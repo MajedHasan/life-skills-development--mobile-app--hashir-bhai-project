@@ -9,12 +9,12 @@ import WishlistBox from '../../components/Common/WishlistBox'
 const Wishlist = ({ navigation, route }) => {
     return (
         <>
-            <NormalLayout showNavMenu="parent" navigation={navigation} route={route} shadowShown={true} headerLeft={<BalanceBadge />} >
+            <NormalLayout showNavMenu="child" navigation={navigation} route={route} shadowShown={true} headerLeft={<BalanceBadge />} >
                 <View style={styles.container}>
                     <ScrollView style={{ flex: 1 }}>
                         <View style={styles.todaysJobHeadingBox}>
                             <Text style={styles.todaysJobHeading}>Financial Goals</Text>
-                            <TouchableOpacity style={{ ...styles.todaysJobHeadingBtn, ...GlobalStyle.primaryBtn, width: 105 }} onPress={() => setShowModal(true)}>
+                            <TouchableOpacity style={{ ...styles.todaysJobHeadingBtn, ...GlobalStyle.primaryBtn, width: 105 }} onPress={() => navigation.navigate("AddWish")}>
                                 <Entypo name="plus" style={{ fontSize: 15, color: "#FFFFFF" }} />
                                 <Text style={styles.todaysJobHeadingBtnText}>Add wish</Text>
                             </TouchableOpacity>

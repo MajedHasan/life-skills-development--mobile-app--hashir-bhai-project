@@ -23,6 +23,8 @@ import CaptureWork from './src/screens/Child/CaptureWork';
 import CaptureVideo from './src/screens/Child/CaptureVideo';
 import Wishlist from './src/screens/Common/Wishlist';
 import WishlistItems from './src/screens/Common/WishlistItems';
+import WishlistImg from './src/screens/Common/WishlistImg';
+import AddWish from './src/screens/Child/AddWish';
 
 
 const Navigation = () => {
@@ -53,6 +55,8 @@ const Navigation = () => {
                 <Stack.Screen name="CaptureVideo" component={CaptureVideo} />
                 <Stack.Screen name="Wishlist" component={Wishlist} />
                 <Stack.Screen name="WishlistItems" component={WishlistItems} />
+                <Stack.Screen name="WishlistImg" component={WishlistImg} />
+                <Stack.Screen name="AddWish" component={AddWish} />
             </Stack.Navigator>
         </NavigationContainer >
     )
