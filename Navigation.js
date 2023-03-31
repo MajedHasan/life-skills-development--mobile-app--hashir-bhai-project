@@ -25,6 +25,7 @@ import Wishlist from './src/screens/Common/Wishlist';
 import WishlistItems from './src/screens/Common/WishlistItems';
 import WishlistImg from './src/screens/Common/WishlistImg';
 import AddWish from './src/screens/Child/AddWish';
+import Planner from './src/screens/Common/Planner';
 
 
 const Navigation = () => {
@@ -57,6 +58,7 @@ const Navigation = () => {
                 <Stack.Screen name="WishlistItems" component={WishlistItems} />
                 <Stack.Screen name="WishlistImg" component={WishlistImg} />
                 <Stack.Screen name="AddWish" component={AddWish} />
+                <Stack.Screen name="Planner" component={Planner} />
             </Stack.Navigator>
         </NavigationContainer >
     )
