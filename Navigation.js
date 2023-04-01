@@ -28,6 +28,7 @@ import AddWish from './src/screens/Child/AddWish';
 import Planner from './src/screens/Common/Planner';
 import Onboarding from './src/screens/Parent/Onboarding';
 import SetupKids from './src/screens/Parent/SetupKids';
+import AddTask from './src/screens/Parent/AddTask';
 
 
 const Navigation = () => {
@@ -63,6 +64,7 @@ const Navigation = () => {
                 <Stack.Screen name="Planner" component={Planner} />
                 <Stack.Screen name="Onboarding" component={Onboarding} />
                 <Stack.Screen name="SetupKids" component={SetupKids} />
+                <Stack.Screen name="AddTask" component={AddTask} />
             </Stack.Navigator>
         </NavigationContainer >
     )
