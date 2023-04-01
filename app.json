@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "lifeskills",
+    "slug": "lifeskills",
+    "displayName": "lifeskills",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Splash-bg.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
