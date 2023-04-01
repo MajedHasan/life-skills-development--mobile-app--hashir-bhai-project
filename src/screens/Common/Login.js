@@ -8,17 +8,70 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 import LoginImg from "../../../assets/LoginImg.png"
 import GlobalStyle from '../../styles/GlobalStyle'
 import { PrimaryColor, SecondaryColor } from '../../utils/Colors'
+import { useEffect, useRef } from 'react'
+import Toast, { useToast } from "react-native-toast-notifications";
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { userData } from "../../components/Data/data"
 
 
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route }) => {
 
     const [showPassword, setShowPassword] = useState(true)
+    console.log(route?.params?.userType)
+    const [userInfo, setUserInfo] = useState({ username: "", password: "" })
+    const toast = useToast()
+    const toastRef = useRef();
+
+    useEffect(() => {
+        console.log(userData)
+    }, [userInfo])
+    const handleLogin = async () => {
+        if (userInfo?.username === "" || userInfo?.password === "") {
+            toast.show("Please add username and password", {
+                type: "warning",
+                placement: "top",
+                duration: 4000,
+                offset: 100,
+                animationType: "slide-in"
+            })
+        }
+        else if (userInfo?.username === "majed" || userInfo?.password === "1234") {
+            const user = { ...userInfo, role: route?.params?.userType }
+            const jsonUser = JSON.stringify(user)
+            await AsyncStorage.setItem("user", jsonUser)
+            if (userData?.connected === true) {
+                navigation.navigate("Checklist")
+            }
+            else {
+                if (userData?.role === "child") {
+                    navigation.navigate("Connect")
+                }
+                else if (userData?.role === "parent") {
+                    navigation.navigate("ConnectScan")
+                }
+            }
+        }
+        else {
+            toast.show("Username Or Password was wrong", {
+                type: "warning",
+                placement: "top",
+                duration: 4000,
+                offset: 100,
+                animationType: "slide-in"
+            })
+        }
+    }
 
     return (
         <>
             <SafeAreaLayout statusBarType="primary">
                 <PrimaryStatusBar />
+                <Toast
+                    ref={toastRef}
+                    position='top'
+                    positionValue={1000}
+                />
                 <View style={styles.container}>
                     <View style={styles.top}>
                         <Image source={LoginImg} style={styles.topImg} />
@@ -32,7 +85,7 @@ const Login = ({ navigation }) => {
                                 <Text style={styles.inputLabel}>Username</Text>
                             </View>
                             <View style={styles.textInputBox}>
-                                <TextInput placeholder='Enter username here' style={styles.textInput} />
+                                <TextInput placeholder='Enter username here' style={styles.textInput} onChangeText={(e) => setUserInfo({ ...userInfo, username: e })} />
                             </View>
                         </View>
                         <View style={styles.inputGroup}>
@@ -50,6 +103,7 @@ const Login = ({ navigation }) => {
                                     textContentType="newPassword"
                                     secureTextEntry={showPassword ? true : false}
                                     enablesReturnKeyAutomatically
+                                    onChangeText={(e) => setUserInfo({ ...userInfo, password: e })}
                                 />
                                 {
                                     showPassword ? <Feather name="eye-off" size={15} onPress={() => setShowPassword(false)} /> : <Feather name="eye" size={15} onPress={() => setShowPassword(true)} />
@@ -62,7 +116,7 @@ const Login = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.buttonWrapper}>
-                            <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={() => navigation.navigate("Connect")}>
+                            <TouchableOpacity style={GlobalStyle.primaryBtn} onPress={() => handleLogin()}>
                                 <Text style={{ color: "white" }}>Log in</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigation.navigate("Signup")}>

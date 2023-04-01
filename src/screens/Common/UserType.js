@@ -10,7 +10,7 @@ import GlobalStyle from '../../styles/GlobalStyle'
 const UserType = ({ navigation }) => {
 
     const handleUserTypeSelect = (usertype) => {
-        navigation.navigate("Login")
+        navigation.navigate("Login", { userType: usertype })
     }
 
     return (

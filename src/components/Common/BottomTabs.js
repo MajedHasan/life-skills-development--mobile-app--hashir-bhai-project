@@ -4,12 +4,33 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import Octicons from "react-native-vector-icons/Octicons"
 import Entypo from "react-native-vector-icons/Entypo"
 import { LinearGradient } from 'expo-linear-gradient'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react'
+import { useState } from 'react'
+
 
 
 
 const BottomTabs = ({ tabType, route, navigation }) => {
 
     const Page = route.name
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        setUser(getUser())
+    }, [])
+
+    const getUser = async () => {
+        try {
+            const user = await AsyncStorage.getItem('user')
+            if (user !== null) {
+                return user
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
         <View style={styles.containerWrapper}>
@@ -25,7 +46,7 @@ const BottomTabs = ({ tabType, route, navigation }) => {
                     <Text style={Page.includes("Planner") ? styles.btnActiveText : styles.btnText}>Planner</Text>
                 </TouchableOpacity>
                 {
-                    tabType === "parent" && <TouchableOpacity style={styles.addBtn}>
+                    user?.role === "parent" && <TouchableOpacity style={styles.addBtn}>
                         <LinearGradient colors={["#84FFFD", "#3CBAB8"]} style={styles.addBtnGradient}>
                             <Entypo name="plus" size={20} />
                         </LinearGradient>

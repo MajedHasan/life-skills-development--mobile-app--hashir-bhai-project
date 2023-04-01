@@ -1,10 +1,34 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Image, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { userData } from '../../components/Data/data';
 
 const Splash = ({ navigation }) => {
 
+
     setTimeout(() => {
-        navigation.navigate("UserType")
+        if (userData?.role) {
+            if (userData?.connected === true) {
+                navigation.navigate("Checklist")
+            }
+            else {
+                if (userData?.role === "child") {
+                    navigation.navigate("Connnect")
+                } else {
+                    if (userData?.doneOnboarding === true) {
+                        navigation.navigate("ConnectScan")
+                    }
+                    else {
+                        navigation.navigate("Onboarding")
+                    }
+                }
+            }
+        }
+        else {
+            navigation.navigate("UserType")
+        }
     }, 1500);
+
 
     return (
         <View style={styles.container}>
