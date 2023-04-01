@@ -24,7 +24,7 @@ const Login = ({ navigation, route }) => {
     const toastRef = useRef();
 
     useEffect(() => {
-        console.log(userData)
+        console.log(userData())
     }, [userInfo])
     const handleLogin = async () => {
         if (userInfo?.username === "" || userInfo?.password === "") {
