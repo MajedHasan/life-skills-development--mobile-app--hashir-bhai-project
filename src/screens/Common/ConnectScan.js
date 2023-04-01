@@ -207,7 +207,7 @@ const ConnectScan = ({ navigation }) => {
 export default ConnectScan
 
 
-const ModalResultBox = ({ ImageUrl }) => {
+export const ModalResultBox = ({ ImageUrl }) => {
 
     const [select, setSelect] = useState(false)
 

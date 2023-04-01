@@ -75,13 +75,13 @@ const BottomTabs = ({ tabType, route, navigation }) => {
                 >
                     <TouchableOpacity style={modalStyles.container}>
                         <View style={modalStyles.btnBox}>
-                            <TouchableOpacity onPress={() => navigation.navigate("AddTask")}>
+                            <TouchableOpacity onPress={() => { setModal(false); navigation.navigate("AddTask") }}>
                                 <LinearGradient colors={["#FFBEDC", "#F374AE"]} style={modalStyles.btn}>
                                     <Feather name="plus" style={modalStyles.btnIcon} />
                                     <Text style={modalStyles.btnText}>Add Task</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate("AddReward")}>
+                            <TouchableOpacity onPress={() => { setModal(false); navigation.navigate("AddReward") }}>
                                 <LinearGradient colors={["#FFE5A4", "#FFB800"]} style={modalStyles.btn}>
                                     <Feather name="plus" style={modalStyles.btnIcon} />
                                     <Text style={modalStyles.btnText}>Add Reward</Text>
