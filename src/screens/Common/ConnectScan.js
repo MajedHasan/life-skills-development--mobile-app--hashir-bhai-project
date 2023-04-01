@@ -10,6 +10,7 @@ import { PrimaryColor } from '../../utils/Colors'
 import { useToast } from "react-native-toast-notifications";
 import Toast from "react-native-toast-notifications";
 import { BarCodeScanner } from "expo-barcode-scanner"
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 
@@ -29,7 +30,34 @@ const ConnectScan = ({ navigation }) => {
         setShowModal(false)
     }
 
-    const handleAddParent = () => {
+    const handleAddParent = async () => {
+
+        const jsonUser = await AsyncStorage.getItem("user")
+        const user = JSON.parse(jsonUser)
+
+        if (user?.role === "child") {
+
+            await AsyncStorage.setItem("user", JSON.stringify({ ...user, connected: true }))
+            setTimeout(() => {
+                navigation.navigate("Checklist")
+            }, 100);
+        }
+
+        else if (user?.role === "parent") {
+
+            if (user?.connected === true) {
+                setTimeout(() => {
+                    navigation.navigate("Checklist")
+                }, 100);
+            }
+            else {
+                setTimeout(() => {
+                    navigation.navigate("SetupKids")
+                }, 100);
+            }
+        }
+
+        setShowModal(false)
         toast.show("Parent Added successfully", {
             type: "success",
             placement: "top",
@@ -37,10 +65,7 @@ const ConnectScan = ({ navigation }) => {
             offset: 100,
             animationType: "slide-in"
         })
-        setTimeout(() => {
-            setShowModal(false)
-            navigation.navigate("Checklist")
-        }, 100);
+
     }
 
 
