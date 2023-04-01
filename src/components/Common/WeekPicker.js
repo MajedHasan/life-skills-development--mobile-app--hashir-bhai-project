@@ -71,10 +71,11 @@ const styles = StyleSheet.create({
         marginVertical: 20
     },
     box: {
-        width: 45,
+        width: 40,
         paddingVertical: 15,
-        paddingHorizontal: 8,
-        borderRadius: 99
+        paddingHorizontal: 5,
+        borderRadius: 99,
+        marginHorizontal: 3
     },
     activeBox: {
         shadowColor: "#000000",

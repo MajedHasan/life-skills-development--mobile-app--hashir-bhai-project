@@ -17,14 +17,14 @@ const BottomTabs = ({ tabType, route, navigation }) => {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        setUser(getUser())
+        getUser()
     }, [])
 
     const getUser = async () => {
         try {
             const user = await AsyncStorage.getItem('user')
             if (user !== null) {
-                return user
+                return setUser(JSON.parse(user))
             }
         } catch (error) {
             console.log(error)
