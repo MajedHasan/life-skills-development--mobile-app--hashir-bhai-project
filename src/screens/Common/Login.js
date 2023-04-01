@@ -62,7 +62,7 @@ const Login = ({ navigation, route }) => {
             const user = { ...userInfo, role: route?.params?.userType }
             const jsonUser = JSON.stringify(user)
 
-            if (!userData || userData === {}) {
+            if (!userData || userData === {} || userData?.role !== route?.params?.userType) {
                 await AsyncStorage.setItem("user", jsonUser)
             }
 
