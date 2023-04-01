@@ -9,6 +9,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Entypo from "react-native-vector-icons/Entypo"
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import { useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const Profile = ({ navigation }) => {
@@ -16,8 +17,9 @@ const Profile = ({ navigation }) => {
     const [activeNotification, setActiveNotification] = useState(false)
     const [activeReminers, setActiveReminers] = useState(false)
 
-    const handleLogout = () => {
-        navigation.navigate("Login")
+    const handleLogout = async () => {
+        await AsyncStorage.removeItem("user")
+        navigation.navigate("UserType")
     }
 
     return (
