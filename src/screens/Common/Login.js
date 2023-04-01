@@ -31,7 +31,6 @@ const Login = ({ navigation, route }) => {
         try {
             const user = await AsyncStorage.getItem('user')
             if (user !== null) {
-                console.log(JSON.parse(user))
                 return setUserData(JSON.parse(user))
             }
             else {
@@ -70,11 +69,16 @@ const Login = ({ navigation, route }) => {
                 navigation.navigate("Checklist")
             }
             else {
-                if (userData?.role === "child") {
+                if (userData?.role === "child" || user?.role === "child") {
                     navigation.navigate("Connect")
                 }
-                else if (userData?.role === "parent") {
-                    navigation.navigate("ConnectScan")
+                else if (userData?.role === "parent" || user?.role === "parent") {
+                    if (userData?.doneOnboarding === true) {
+                        navigation.navigate("ConnectScan")
+                    }
+                    else {
+                        navigation.navigate("Onboarding")
+                    }
                 }
             }
         }

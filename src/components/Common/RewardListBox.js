@@ -98,7 +98,7 @@ const RewardListBox = ({ bgColor, bdColor, text, progressBg, progress, progressC
                 showRewardModal && <Modal
                     visible={showRewardModal}
                     transparent={true}
-                    onRequestClose={() => setShowModal(false)}
+                    onRequestClose={() => setShowRewardModal(false)}
                     animationType="slide"
                 >
                     <View style={styles.RewardModalContainer}>
