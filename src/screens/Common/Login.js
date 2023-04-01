@@ -11,7 +11,7 @@ import { PrimaryColor, SecondaryColor } from '../../utils/Colors'
 import { useEffect, useRef } from 'react'
 import Toast, { useToast } from "react-native-toast-notifications";
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { userData } from "../../components/Data/data"
+// import { userData } from "../../components/Data/data"
 
 
 
@@ -23,9 +23,31 @@ const Login = ({ navigation, route }) => {
     const toast = useToast()
     const toastRef = useRef();
 
+
+
+    const [userData, setUserData] = useState({})
+
+    const getUserData = async () => {
+        try {
+            const user = await AsyncStorage.getItem('user')
+            if (user !== null) {
+                console.log(JSON.parse(user))
+                return setUserData(JSON.parse(user))
+            }
+            else {
+                return {}
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
-        console.log(userData())
-    }, [userInfo])
+        getUserData()
+    }, [])
+
+
+
     const handleLogin = async () => {
         if (userInfo?.username === "" || userInfo?.password === "") {
             toast.show("Please add username and password", {
@@ -39,7 +61,11 @@ const Login = ({ navigation, route }) => {
         else if (userInfo?.username === "majed" || userInfo?.password === "1234") {
             const user = { ...userInfo, role: route?.params?.userType }
             const jsonUser = JSON.stringify(user)
-            await AsyncStorage.setItem("user", jsonUser)
+
+            if (!userData || userData === {}) {
+                await AsyncStorage.setItem("user", jsonUser)
+            }
+
             if (userData?.connected === true) {
                 navigation.navigate("Checklist")
             }
@@ -62,6 +88,7 @@ const Login = ({ navigation, route }) => {
             })
         }
     }
+
 
     return (
         <>

@@ -5,11 +5,14 @@ import { useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
-export const userData = async () => {
+let userInfo = {}
+
+export const userDataFn = async () => {
     try {
         const user = await AsyncStorage.getItem('user')
         if (user !== null) {
-            return user
+            console.log(JSON.parse(user))
+            return userInfo = await JSON.parse(user)
         }
         else {
             return {}
@@ -18,7 +21,13 @@ export const userData = async () => {
         console.log(error)
     }
 }
-const data = () => {
+userDataFn()
+
+export const userData = userInfo
+
+
+
+function data() {
 
     return (
         <View>

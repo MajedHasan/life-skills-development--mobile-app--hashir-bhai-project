@@ -1,9 +1,32 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Image, StyleSheet, Text, View, StatusBar } from 'react-native';
-import { userData } from '../../components/Data/data';
+// import { userData } from '../../components/Data/data';
 
 const Splash = ({ navigation }) => {
+
+    const [userData, setUserData] = useState({})
+
+    const getUserData = async () => {
+        try {
+            const user = await AsyncStorage.getItem('user')
+            if (user !== null) {
+                console.log(JSON.parse(user))
+                return setUserData(JSON.parse(user))
+            }
+            else {
+                return {}
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getUserData()
+    }, [])
+
 
 
     setTimeout(() => {
@@ -13,7 +36,7 @@ const Splash = ({ navigation }) => {
             }
             else {
                 if (userData?.role === "child") {
-                    navigation.navigate("Connnect")
+                    navigation.navigate("Connect")
                 } else {
                     if (userData?.doneOnboarding === true) {
                         navigation.navigate("ConnectScan")
